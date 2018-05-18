@@ -15,10 +15,15 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { UserService } from './services/user.service';
+import { StoryService } from './services/story.service';
+import { CommentService } from './services/comment.service';
 import { RequestService } from './services/request.service';
-import { userReducer, loadingReducer } from './ngrx/reducers';
+import { userReducer, loadingReducer, storiesReducer } from './ngrx/reducers';
 import { MustBeUserGuard } from './guards/must-be-user.guard';
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
+import { StoryFormComponent } from './profile/story-form/story-form.component';
+import { StoriesComponent } from './stories/stories.component';
+import { StoryComponent } from './profile/story/story.component';
 
 const routesConfig: Routes = [
   { path: '', component: HomePageComponent },
@@ -39,17 +44,20 @@ const routesConfig: Routes = [
     SignInComponent,
     ForgotPasswordComponent,
     PageNotFoundComponent,
-    FriendsComponent
+    FriendsComponent,
+    StoryFormComponent,
+    StoriesComponent,
+    StoryComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ user: userReducer, loading: loadingReducer }),
+    StoreModule.forRoot({ user: userReducer, loading: loadingReducer, stories: storiesReducer }),
     RouterModule.forRoot(routesConfig),
   ],
-  providers: [RequestService, UserService, MustBeUserGuard, MustBeGuestGuard],
+  providers: [RequestService, UserService, StoryService, CommentService, MustBeUserGuard, MustBeGuestGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

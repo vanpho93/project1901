@@ -7,7 +7,7 @@ const storyRouter = express.Router();
 storyRouter.use(mustBeUser);
 
 storyRouter.get('/', (req, res) => {
-    Story.find({})
+    Story.getAllStory({})
     .then(stories => res.send({ success: true, stories }))
     .catch(error => res.status(500).send({ success: false, message: error.message }));
 });

@@ -1,0 +1,14 @@
+<div class="story">
+  <a>{{ story.author.name }}</a>
+  <p>{{ story.content }}</p>
+  <input
+    placeholder="Enter your comment"
+    class="form-control"
+    [(ngModel)]="txtComment"
+    (keyup.enter)="createComment();"
+  />
+  <hr>
+  <div *ngFor="let comment of story.comments">
+    <p>{{ comment.author.name }}: {{ comment.content }}</p>
+  </div>
+</div>

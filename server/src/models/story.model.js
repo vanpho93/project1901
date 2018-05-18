@@ -13,6 +13,17 @@ const storySchema = new mongoose.Schema({
 const StoryModel = mongoose.model('Story', storySchema);
 
 class Story extends StoryModel {
+    static async getAllStory() {
+        const stories = await Story.find({})
+        .populate({ path: 'author', select: 'name' })
+        .populate({ path: 'fans', select: 'name' })
+        .populate({
+            path: 'comments',
+            populate: { path: 'author', select: 'name' }
+        });
+        return stories;
+    }
+
     static async createStory(content, userId) {
         validateObjectIds(userId);
         try {
@@ -20,7 +31,7 @@ class Story extends StoryModel {
             await story.save();
             const user = await User.findByIdAndUpdate(userId, { $push: { stories: story._id } });
             validateUserExist(user);
-            return story;
+            return Story.populate(story, { path: 'author', select: 'name' });
         } catch (error) {
             await Story.findByIdAndRemove(story);
             if (error instanceof MyError) throw error;
