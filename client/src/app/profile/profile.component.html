@@ -1,0 +1,13 @@
+<div *ngIf="user">
+  <h3>
+    Name: {{ user.name }}
+  </h3>
+  <p>
+    email: {{ user.email }}
+  </p>
+</div>
+<div *ngIf="!user">
+  <p>
+    Ban phai dang nhap.
+  </p>
+</div>
