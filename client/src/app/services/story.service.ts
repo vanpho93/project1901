@@ -19,7 +19,6 @@ export class StoryService {
     getAllStory() {
         this.request.get('/story')
         .then(response => {
-            console.log(response);
             this.store.dispatch({ type: 'SET_STORIES', stories: response.stories });
         })
         .catch(error => console.log(error));

@@ -1,3 +1,22 @@
-<p>
-  friends works!
-</p>
+<h3>Friends</h3>
+<div *ngFor="let friend of people.friends">
+  <p>{{ people.name }}</p>
+  <button class="btn btn-danger">Remove Friend</button>
+  <button class="btn btn-success">Send Message</button>
+</div>
+<h3>Incomming request</h3>
+<div *ngFor="let friend of people.incommingRequests">
+    <p>{{ friend.name }}</p>
+    <button class="btn btn-primary">Decline</button>
+    <button class="btn btn-success">Accept</button>
+</div>
+<h3>Sent requests</h3>
+<div *ngFor="let friend of people.sentRequests">
+    <p>{{ friend.name }}</p>
+    <button class="btn btn-primary">Cancel</button>
+</div>
+<h3>Other user</h3>
+<div *ngFor="let friend of people.otherUsers">
+    <p>{{ friend.name }}</p>
+    <button class="btn btn-primary" (click)="addFriend(friend)">Add Friend</button>
+</div>

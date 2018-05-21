@@ -16,9 +16,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { UserService } from './services/user.service';
 import { StoryService } from './services/story.service';
+import { FriendService } from './services/friend.service';
 import { CommentService } from './services/comment.service';
 import { RequestService } from './services/request.service';
-import { userReducer, loadingReducer, storiesReducer } from './ngrx/reducers';
+import { userReducer, loadingReducer, storiesReducer, peopleReducer } from './ngrx/reducers';
 import { MustBeUserGuard } from './guards/must-be-user.guard';
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 import { StoryFormComponent } from './profile/story-form/story-form.component';
@@ -54,10 +55,10 @@ const routesConfig: Routes = [
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ user: userReducer, loading: loadingReducer, stories: storiesReducer }),
+    StoreModule.forRoot({ user: userReducer, loading: loadingReducer, stories: storiesReducer, people: peopleReducer }),
     RouterModule.forRoot(routesConfig),
   ],
-  providers: [RequestService, UserService, StoryService, CommentService, MustBeUserGuard, MustBeGuestGuard],
+  providers: [RequestService, UserService, StoryService, CommentService, FriendService, MustBeUserGuard, MustBeGuestGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

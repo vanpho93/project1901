@@ -1,4 +1,4 @@
-import { User, Story } from '../types';
+import { User, Story, People } from '../types';
 
 export function userReducer(state = null, action): User {
     if (action.type === 'SET_USER') return action.user;
@@ -36,5 +36,19 @@ export function storiesReducer(state: Story[] = [], action): Story[] {
             })
         };
     });
+    return state;
+}
+
+const defaultPeople: People = { friends: [], incommingRequest: [], otherUsers: [], sentRequests: [] };
+
+export function peopleReducer(state: People = defaultPeople, action): People {
+    if (action.type === 'SET_PEOPLE') return action.people;
+    if (action.type === 'ADD_FRIEND') {
+        return {
+            ...state,
+            otherUsers: state.otherUsers.filter(user => user._id !== action.user.idUser),
+            sentRequests: [action.user, ...state.sentRequests]
+        };
+    }
     return state;
 }

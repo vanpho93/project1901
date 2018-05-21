@@ -6,6 +6,12 @@ const friendRouter = express.Router();
 
 friendRouter.use(mustBeUser);
 
+friendRouter.get('/', (req, res) => {
+    Friend.getUsers(req.idUser)
+    .then(people => res.send({ success: true, people }))
+    .catch(res.onError);
+})
+
 friendRouter.post('/request/:idReceiver', (req, res) => {
     Friend.sendFriendRequest(req.idUser, req.params.idReceiver)
     .then(receiver => res.send({ success: true, receiver }))

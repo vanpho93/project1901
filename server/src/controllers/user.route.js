@@ -1,4 +1,5 @@
 const express = require('express');
+const faker = require('faker');
 const { User } = require('../models/user.model');
 
 const userRouter = express.Router();
@@ -24,3 +25,7 @@ userRouter.get('/check', (req, res) => {
 });
 
 module.exports = { userRouter };
+
+// for(let i = 0; i < 10; i++) {
+//     User.signUp(faker.name.findName(), faker.internet.email(), '123');
+// }

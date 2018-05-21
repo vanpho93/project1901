@@ -8,6 +8,7 @@ export interface AppState {
     user: User;
     loading: boolean;
     stories: Story[];
+    people: People;
 }
 
 export interface UserInfo {
@@ -27,4 +28,11 @@ export interface Story {
     author: UserInfo;
     fans: UserInfo[];
     comments: Comment[];
+}
+
+export interface People {
+    friends: UserInfo[];
+    incommingRequest: UserInfo[];
+    sentRequests: UserInfo[];
+    otherUsers: UserInfo[];
 }
