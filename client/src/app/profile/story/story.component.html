@@ -14,5 +14,8 @@
   </a>
   <div *ngFor="let comment of story.comments">
     <p>{{ comment.author.name }}: {{ comment.content }}</p>
+    <a (click)="likeComment(comment._id)" style="padding-left: 10px">
+      {{ comment.fans.length }} likes
+    </a>
   </div>
 </div>

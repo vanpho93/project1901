@@ -18,6 +18,7 @@ export interface UserInfo {
 export interface Comment {
     _id: string;
     author: UserInfo;
+    fans: string[];
 }
 
 export interface Story {

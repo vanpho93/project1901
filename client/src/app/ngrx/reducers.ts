@@ -26,5 +26,15 @@ export function storiesReducer(state: Story[] = [], action): Story[] {
         if (story._id !== action._id) return story;
         return {...story, fans: story.fans.filter(fan => fan._id !== action.idUser) };
     });
+    if (action.type === 'LIKE_COMMENT') return state.map(story => {
+        if (story._id !== action.idStory) return story;
+        return {
+            ...story,
+            comments: story.comments.map(comment => {
+                if (comment._id !== action.idComment) return comment;
+                return { ...comment, fans: action.fans };
+            })
+        };
+    });
     return state;
 }

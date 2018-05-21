@@ -38,4 +38,8 @@ export class StoryComponent {
     }
     this.storyService.dislikeStory(this.story._id);
   }
+
+  likeComment(_id: string) {
+    this.commentService.likeComment(_id);
+  }
 }

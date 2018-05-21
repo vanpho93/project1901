@@ -20,4 +20,18 @@ export class CommentService {
         }))
         .catch(error => console.log(error));
     }
+
+    likeComment(idComment: string) {
+        this.request.post('/comment/like/' + idComment, null)
+        .then(response => {
+            const { _id, story, fans } = response.comment;
+            this.store.dispatch({
+                type: 'LIKE_COMMENT',
+                idStory: story,
+                idComment: _id,
+                fans
+            });
+        })
+        .catch(error => console.log(error));
+    }
 }
