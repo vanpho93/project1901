@@ -8,6 +8,10 @@
     (keyup.enter)="createComment();"
   />
   <hr>
+  <a (click)="toggleLike();">
+    <img *ngIf="liked" width="15" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1000px-Facebook_Like_button.svg.png" />
+    {{ story.fans.length }} likes
+  </a>
   <div *ngFor="let comment of story.comments">
     <p>{{ comment.author.name }}: {{ comment.content }}</p>
   </div>
